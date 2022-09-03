@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "752009909345",
+    "project_id": "chatflutter-f0968",
+    "storage_bucket": "chatflutter-f0968.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752009909345:android:54b0270b4d573882f24620",
+        "android_client_info": {
+          "package_name": "com.kashsoft.animated_chat_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752009909345-0aktfkh8fhd3bph7sj5uca7t5kn8bfat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi2SSjzI-6fsqRYsbgsHKl8-uySl8f2VI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752009909345-0aktfkh8fhd3bph7sj5uca7t5kn8bfat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
