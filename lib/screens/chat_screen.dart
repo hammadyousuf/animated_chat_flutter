@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 final _firestore = FirebaseFirestore.instance;
-
+late User loggedInUser;
 
 class ChatScreen extends StatefulWidget {
   static String id = 'chat_screen';
@@ -19,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   final _auth = FirebaseAuth.instance;
   late String messageText;
-  late User loggedInUser;
+
 
   @override
   void initState() {
@@ -139,10 +139,12 @@ class  MessegesStream extends StatelessWidget {
         for (var messege in messeges) {
           final messageText = messege.data['text'];
           final messegeSender = messege.data['sender'];
+           final currentUser = loggedInUser.email;
 
           final messegeBubble = MessegeBubble(
             sender: messegeSender,
             text: messageText,
+            isMe: currentUser == messageBubbles,
           );
 
           messageBubbles.add(messegeBubble);
@@ -160,16 +162,17 @@ class  MessegesStream extends StatelessWidget {
 }
 
 class MessegeBubble extends StatelessWidget {
-  MessegeBubble({required this.sender, required this.text});
+  MessegeBubble({required this.sender, required this.text, required this.isMe});
   final String sender;
   final String text;
+  final bool isMe;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
           Text(sender,
           style: TextStyle(
@@ -177,15 +180,21 @@ class MessegeBubble extends StatelessWidget {
             color: Colors.black54,
           ),),
           Material(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                bottomLeft: Radius.circular(30.0),
+                bottomRight: Radius.circular(30.0))
+            : BottomRight: Radius.circular(30.0), topRight:Radius.circular(30.0),
+        DropdownButton(
+
             elevation: 5.0,
-            color: Colors.lightBlueAccent,
+            color: isMe? Colors.lightBlueAccent : Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Text(
                 text,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: isMe? Colors.white : Colors.black54 ,
                   fontSize: 15.0,
                 ),
               ),
