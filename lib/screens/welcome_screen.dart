@@ -5,7 +5,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animated_chat_flutter/components/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static String id = 'welcome_screen';
+  static const String id = 'welcome_screen';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -13,20 +13,18 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation animation;
+  AnimationController controller;
+  Animation animation;
 
   @override
   void initState() {
     super.initState();
+
     controller =
         AnimationController(duration: Duration(seconds: 1), vsync: this);
     animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
         .animate(controller);
-    //animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
-
     controller.forward();
-
     controller.addListener(() {
       setState(() {});
     });
@@ -43,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     return Scaffold(
       backgroundColor: animation.value,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 7.0),
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -58,11 +56,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
                 TypewriterAnimatedTextKit(
-                  text: const ['Flash Chat'],
+                  text: ['Flash Chat'],
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
-                    color: Colors.grey.shade900,
                   ),
                 ),
               ],
@@ -90,5 +87,3 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
   }
 }
-
-
